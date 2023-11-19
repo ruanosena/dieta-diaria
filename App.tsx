@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "react-native";
+import {
+	useFonts,
+	NunitoSans_400Regular,
+	NunitoSans_700Bold,
+} from "@expo-google-fonts/nunito-sans";
+import { ThemeProvider } from "styled-components/native";
+import tema from "./fonte/tema";
+import Carregamento from "@comp/Carregamento";
+import Rotas from "./fonte/rotas";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	const [fonteCarregada] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	return (
+		<ThemeProvider theme={tema}>
+			<StatusBar backgroundColor="transparent" barStyle="light-content" translucent />
+			{fonteCarregada ? <Rotas /> : <Carregamento />}
+		</ThemeProvider>
+	);
+}
