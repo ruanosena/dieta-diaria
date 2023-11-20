@@ -1,18 +1,32 @@
-import { Conteiner } from "./estilos";
-import Botao from "@comp/Botao";
+import { Conteiner, SecaoConteiner, SecaoTitulo } from "./estilos";
 import Cabecalho from "@comp/Cabecalho";
 import Heroi from "@comp/Heroi";
-import Selecionar from "@comp/Selecionar";
-import Entrada from "@comp/Entrada";
+import Botao from "@comp/Botao";
+import { useNavigation } from "@react-navigation/native";
+import RefeicaoCartao from "@comp/RefeicaoCartao";
 
 export default function Inicio() {
-  return (
-    <Conteiner>
-      <Cabecalho />
-      <Heroi />
-      <Botao tipo="primario" icone="editar">Label</Botao>
-      <Selecionar tipo="primario" estaAtivo>Sim</Selecionar>
-      <Entrada titulo="teste" />
-    </Conteiner>
-  )
+	const navegador = useNavigation();
+
+	function lidarAbrirHeroi() {
+		navegador.navigate("estatisticas");
+	}
+
+	return (
+		<Conteiner>
+			<Cabecalho />
+			<Heroi titulo="90,86%" tipo="primario" onPress={lidarAbrirHeroi}>
+				das refeições dentro da dieta
+			</Heroi>
+
+			<SecaoConteiner>
+				<SecaoTitulo>Refeições</SecaoTitulo>
+				<Botao tipo="primario" icone="adicionar">
+					Nova refeição
+				</Botao>
+
+				<RefeicaoCartao />
+			</SecaoConteiner>
+		</Conteiner>
+	);
 }

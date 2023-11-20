@@ -2,13 +2,13 @@ import { TextInputProps } from "react-native";
 import { Conteiner, EntradaTexto, Rotulo } from "./estilos";
 
 type EntradaProps = TextInputProps & {
-	titulo?: string;
+	rotulo?: string;
 };
 
-export default function Entrada({ titulo, ...rest }: EntradaProps) {
+export default function Entrada({ rotulo, ...rest }: EntradaProps) {
 	return (
 		<Conteiner>
-			{ titulo && <Rotulo>{titulo}</Rotulo>}
+			{ rotulo && <Rotulo>{rotulo}</Rotulo>}
 			<EntradaTexto {...rest} />
 		</Conteiner>
 	);

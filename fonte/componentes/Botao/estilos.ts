@@ -1,9 +1,9 @@
-import { PencilSimpleLine, Trash } from "phosphor-react-native";
+import { PencilSimpleLine, Plus, Trash } from "phosphor-react-native";
 import styled from "styled-components/native";
 import { css } from "styled-components/native";
 
 export type BotaoTipoEstiloProps = "primario" | "secundario";
-export type BotaoIconeEstiloProps = "editar" | "deletar";
+export type BotaoIconeEstiloProps = "editar" | "deletar" | "adicionar";
 
 type BotaoEstiloProps = {
 	tipo: BotaoTipoEstiloProps;
@@ -35,6 +35,13 @@ export const IconeEditar = styled(PencilSimpleLine).attrs(({ theme }) => ({
 `;
 
 export const IconeDeletar = styled(Trash).attrs(({ theme }) => ({
+	color: theme.CORES.BASE.WHITE,
+	size: 18,
+}))`
+	margin-right: 12px;
+`;
+
+export const IconeAdicionar = styled(Plus).attrs(({ theme }) => ({
 	color: theme.CORES.BASE.WHITE,
 	size: 18,
 }))`

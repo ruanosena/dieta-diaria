@@ -3,6 +3,7 @@ import {
 	BotaoIconeEstiloProps,
 	BotaoTipoEstiloProps,
 	Conteiner,
+	IconeAdicionar,
 	IconeDeletar,
 	IconeEditar,
 	Titulo,
@@ -14,11 +15,16 @@ type BotaoProps = TouchableOpacityProps & {
 	tipo?: BotaoTipoEstiloProps;
 	children: ReactNode;
 };
+const BotaoIcones: { [key in BotaoIconeEstiloProps]: ReactNode } = {
+	adicionar: <IconeAdicionar />,
+	deletar: <IconeDeletar />,
+	editar: <IconeEditar />,
+};
 
 export default function Botao({ icone, tipo = "primario", children, ...rest }: BotaoProps) {
 	return (
 		<Conteiner tipo={tipo} {...rest}>
-			{icone && icone == "editar" ? <IconeEditar /> : icone && <IconeDeletar />}
+			{icone && BotaoIcones[icone]}
 			<Titulo tipo={tipo}>{children}</Titulo>
 		</Conteiner>
 	);

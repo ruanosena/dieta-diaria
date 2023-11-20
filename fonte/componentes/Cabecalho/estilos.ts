@@ -11,8 +11,9 @@ export const Conteiner = styled.View`
 
 export const Logotipo = styled.View`
 	flex-direction: row;
+	align-items: center;
 	width: 78px;
-	height: 41px;
+	/* height: 41px; */
 `;
 
 export const Marca = styled.Text`

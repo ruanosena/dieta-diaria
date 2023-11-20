@@ -15,7 +15,7 @@ type SelecionarProps = TouchableOpacityProps & {
 	children: ReactNode;
 };
 
-export default function Selecionar({
+export default function Selecionavel({
 	tipo = "primario",
 	estaAtivo = false,
 	children,

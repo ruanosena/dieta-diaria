@@ -1,18 +1,37 @@
+import { ReactNode } from "react";
 import {
 	IconeDireita,
 	IconeVoltar,
 	Conteiner,
-	HeroiEstiloProps,
 	Texto,
 	Titulo,
+	HeroiTipoEstiloProps,
+	BotaoIcone,
 } from "./estilos";
+import { useTheme } from "styled-components/native";
+import { TouchableOpacityProps } from "react-native";
 
-export default function Heroi({ positivo = true, topo = false }: HeroiEstiloProps) {
+type DestaqueProps = TouchableOpacityProps & {
+	titulo: string;
+	children: ReactNode;
+	topo?: boolean;
+	tipo?: HeroiTipoEstiloProps;
+};
+
+export default function Heroi({ titulo, children, tipo = "primario", topo, ...rest }: DestaqueProps) {
+	const { CORES } = useTheme();
+
 	return (
-		<Conteiner positivo={positivo}>
-			{topo ? <IconeVoltar /> : <IconeDireita />}
-			<Titulo>90,86%</Titulo>
-			<Texto>das refeições dentro da dieta</Texto>
+		<Conteiner tipo={tipo}>
+			<BotaoIcone topo={topo} {...rest}>
+				{topo ? (
+					<IconeVoltar color={tipo == "primario" ? CORES.PRODUTO.GREEN_DARK : CORES.PRODUTO.RED_DARK} />
+				) : (
+					<IconeDireita color={tipo == "primario" ? CORES.PRODUTO.GREEN_DARK : CORES.PRODUTO.RED_DARK} />
+				)}
+			</BotaoIcone>
+			<Titulo>{titulo}</Titulo>
+			<Texto>{children}</Texto>
 		</Conteiner>
 	);
 }
