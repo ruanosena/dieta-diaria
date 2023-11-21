@@ -3,6 +3,7 @@ export declare global {
 		interface RootParamList {
 			inicio: undefined;
 			estatisticas: undefined;
+			criar: undefined;
 		}
 	}
 }

@@ -69,6 +69,10 @@ export default function Inicio() {
 		navegador.navigate("estatisticas");
 	}
 
+	function lidarAbrirCriar() {
+		navegador.navigate("criar");
+	}
+
 	return (
 		<Conteiner>
 			<Cabecalho />
@@ -78,7 +82,7 @@ export default function Inicio() {
 
 			<SecaoConteiner>
 				<SecaoNome>Refeições</SecaoNome>
-				<Botao tipo="primario" icone="adicionar">
+				<Botao tipo="primario" icone="adicionar" onPress={lidarAbrirCriar}>
 					Nova refeição
 				</Botao>
 
