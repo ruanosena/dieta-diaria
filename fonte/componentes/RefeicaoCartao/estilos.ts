@@ -12,7 +12,8 @@ export const Conteiner = styled.View<RefeicaoCartaoEstiloProps>`
 	align-items: center;
 	padding: 14px 16px 14px 12px;
 	border: 1px solid
-		${({ theme, ativo }) => (ativo ? theme.CORES.PRODUTO.GREEN_MID : theme.CORES.PRODUTO.RED_MID)};
+		${({theme}) => theme.CORES.BASE.GRAY_300};
+	margin: 4px 0;
 `;
 
 export const Marcacao = styled.Text`

@@ -1,18 +1,20 @@
 import { useTheme } from "styled-components/native";
 import { Conteiner, Distintivo, Marcacao, Nome } from "./estilos";
+import { RefeicaoDTO } from "@arm/refeicao/RefeicaoDTO";
+import { ViewProps } from "react-native";
 
-type RefeicaoCartaoProps = {
-	estaAtivo?: boolean;
+type RefeicaoCartaoProps = ViewProps & {
+	refeicao: RefeicaoDTO;
 };
 
-export default function RefeicaoCartao({ estaAtivo = true }: RefeicaoCartaoProps) {
+export default function RefeicaoCartao({ refeicao, ...rest }: RefeicaoCartaoProps) {
 	const { CORES } = useTheme();
 
 	return (
-		<Conteiner ativo={estaAtivo}>
-			<Marcacao>20:00</Marcacao>
-			<Nome>X-tudo</Nome>
-			<Distintivo color={estaAtivo ? CORES.PRODUTO.GREEN_MID : CORES.PRODUTO.RED_MID} />
+		<Conteiner ativo={refeicao.estaNaDieta} {...rest}>
+			<Marcacao>{refeicao.hora}</Marcacao>
+			<Nome>{refeicao.nome}</Nome>
+			<Distintivo color={refeicao.estaNaDieta ? CORES.PRODUTO.GREEN_MID : CORES.PRODUTO.RED_MID} />
 		</Conteiner>
 	);
 }

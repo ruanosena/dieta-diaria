@@ -16,12 +16,14 @@ export const Conteiner = styled.View<DestaqueEstiloProps>`
 					background-color: ${tipo == "primario"
 						? theme.CORES.PRODUTO.GREEN_LIGHT
 						: theme.CORES.PRODUTO.RED_LIGHT};
+					flex: 1;
 			  `
 			: css`
 					background-color: ${theme.CORES.BASE.GRAY_200};
 			  `}
 	padding: 16px 16px;
 	border-radius: 8px;
+	margin: 6px 0;
 `;
 
 export const Titulo = styled.Text`
@@ -38,4 +40,5 @@ export const Texto = styled.Text`
 		font-size: ${theme.FONT_SIZE.SM}px;
 		color: ${theme.CORES.BASE.GRAY_700};
 	`}
+	text-align: center;
 `;
