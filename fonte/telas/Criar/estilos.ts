@@ -53,6 +53,9 @@ export const FormularioRotulo = styled.Text`
 	`}
 	width: 100%;
 `;
+
 export const FormularioLinha = styled.View`
 	flex-flow: row wrap;
+	column-gap: 20px;
+	width: 100%;
 `;
