@@ -23,6 +23,10 @@ export default function Criar() {
 		navegador.navigate("inicio");
 	}
 
+	function lidarEnviar() {
+		navegador.navigate("criarFeedback", { estaNaDieta });
+	}
+
 	return (
 		<Conteiner>
 			<Topo>
@@ -47,7 +51,7 @@ export default function Criar() {
 						Não
 					</Selecionavel>
 				</FormularioLinha>
-				<Botao>Cadastrar refeição</Botao>
+				<Botao onPress={lidarEnviar}>Cadastrar refeição</Botao>
 			</Formulario>
 		</Conteiner>
 	);

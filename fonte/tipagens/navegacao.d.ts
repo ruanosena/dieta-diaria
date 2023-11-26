@@ -4,6 +4,7 @@ export declare global {
 			inicio: undefined;
 			estatisticas: undefined;
 			criar: undefined;
+			criarFeedback: { estaNaDieta: boolean };
 		}
 	}
 }
