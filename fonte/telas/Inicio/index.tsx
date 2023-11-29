@@ -73,6 +73,10 @@ export default function Inicio() {
 		navegador.navigate("criar");
 	}
 
+	function lidarAbrirRefeicao() {
+		navegador.navigate("refeicao");
+	}
+
 	return (
 		<Conteiner>
 			<Cabecalho />
@@ -89,7 +93,7 @@ export default function Inicio() {
 				<SectionList
 					sections={refeicoes}
 					keyExtractor={(item, index) => item.hora + index}
-					renderItem={({ item }) => <RefeicaoCartao refeicao={item} />}
+					renderItem={({ item }) => <RefeicaoCartao onPress={lidarAbrirRefeicao} refeicao={item} />}
 					renderSectionHeader={({ section: { date } }) => <SecaoTitulo>{date}</SecaoTitulo>}
 				/>
 			</SecaoConteiner>

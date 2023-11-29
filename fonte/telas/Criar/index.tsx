@@ -16,6 +16,8 @@ import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 export default function Criar() {
+	const [entradaData, defEntradaData] = useState("");
+	const [entradaHora, defEntradaHora] = useState("");
 	const [estaNaDieta, defEstaNaDieta] = useState(true);
 	const navegador = useNavigation();
 
@@ -39,8 +41,28 @@ export default function Criar() {
 				<Entrada rotulo="Nome" />
 				<Entrada rotulo="Descrição" multiline textAlignVertical="top" numberOfLines={5} />
 				<FormularioLinha>
-					<Entrada rotulo="Data" keyboardType="number-pad" style={{ width: 126 }} />
-					<Entrada rotulo="Hora" keyboardType="number-pad" style={{ width: 126 }} />
+					<Entrada
+						rotulo="Data"
+						value={entradaData}
+						maxLength={10}
+						onChangeText={(texto) => {
+							if (texto.length == 2 || texto.length == 5) texto += "/";
+							defEntradaData(texto);
+						}}
+						keyboardType="number-pad"
+						style={{ width: 126 }}
+					/>
+					<Entrada
+						rotulo="Hora"
+						value={entradaHora}
+						maxLength={5}
+						onChangeText={(texto) => {
+							if (texto.length == 2) texto += ":";
+							defEntradaHora(texto);
+						}}
+						keyboardType="number-pad"
+						style={{ width: 126 }}
+					/>
 				</FormularioLinha>
 				<FormularioLinha>
 					<FormularioRotulo>Está dentro da dieta?</FormularioRotulo>

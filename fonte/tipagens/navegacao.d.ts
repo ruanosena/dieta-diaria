@@ -5,6 +5,7 @@ export declare global {
 			estatisticas: undefined;
 			criar: undefined;
 			criarFeedback: { estaNaDieta: boolean };
+			refeicao: undefined;
 		}
 	}
 }

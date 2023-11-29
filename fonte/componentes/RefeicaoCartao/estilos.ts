@@ -6,7 +6,7 @@ type RefeicaoCartaoEstiloProps = {
 	ativo: boolean;
 };
 
-export const Conteiner = styled.View<RefeicaoCartaoEstiloProps>`
+export const Conteiner = styled.TouchableOpacity<RefeicaoCartaoEstiloProps>`
 	width: 100%;
 	flex-direction: row;
 	align-items: center;

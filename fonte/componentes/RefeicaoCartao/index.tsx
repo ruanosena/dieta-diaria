@@ -1,9 +1,9 @@
 import { useTheme } from "styled-components/native";
 import { Conteiner, Distintivo, Marcacao, Nome } from "./estilos";
 import { RefeicaoDTO } from "@arm/refeicao/RefeicaoDTO";
-import { ViewProps } from "react-native";
+import { TouchableOpacityProps } from "react-native";
 
-type RefeicaoCartaoProps = ViewProps & {
+type RefeicaoCartaoProps = TouchableOpacityProps & {
 	refeicao: RefeicaoDTO;
 };
 
