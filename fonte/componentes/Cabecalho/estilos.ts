@@ -3,11 +3,21 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { css } from "styled-components/native";
 
-export const Conteiner = styled(SafeAreaView)`
+type TipoEstiloProps = "primario" | "secundario" | undefined;
+type CabecalhoEstiloProps = {
+	tipo: TipoEstiloProps;
+};
+
+export const Conteiner = styled(SafeAreaView)<CabecalhoEstiloProps>`
 	padding: 24px;
 	flex-direction: row;
 	align-items: center;
-	background-color: ${({ theme }) => theme.CORES.BASE.GRAY_300};
+	background-color: ${({ theme, tipo }) =>
+		tipo == "primario"
+			? theme.CORES.PRODUTO.GREEN_LIGHT
+			: tipo == "secundario"
+			? theme.CORES.PRODUTO.RED_LIGHT
+			: theme.CORES.BASE.GRAY_300};
 `;
 
 export const Titulo = styled.Text`

@@ -4,6 +4,7 @@ import { css } from "styled-components/native";
 
 export const Conteiner = styled.View`
 	min-height: 70px;
+	flex: 1;
 `;
 
 export const Rotulo = styled.Text`
@@ -16,6 +17,7 @@ export const Rotulo = styled.Text`
 
 export const EntradaTexto = styled(TextInput)`
 	min-height: 56px;
+	width: 100%;
 	${({ theme }) => css`
 		background-color: ${theme.CORES.BASE.GRAY_100};
 		color: ${theme.CORES.BASE.GRAY_700};
@@ -25,4 +27,5 @@ export const EntradaTexto = styled(TextInput)`
 	`}
 	border-radius: 6px;
 	padding: 14px;
+	margin-bottom: 24px;
 `;

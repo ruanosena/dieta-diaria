@@ -5,9 +5,10 @@ import { useNavigation } from "@react-navigation/native";
 
 type Props = {
 	children?: ReactNode;
+	tipo?: "primario" | "secundario";
 };
 
-export default function Cabecalho({ children }: Props) {
+export default function Cabecalho({ tipo, children }: Props) {
 	const navegador = useNavigation();
 
 	function lidarVoltar() {
@@ -15,7 +16,7 @@ export default function Cabecalho({ children }: Props) {
 	}
 
 	return (
-		<Conteiner>
+		<Conteiner tipo={tipo}>
 			<TouchableOpacity onPress={lidarVoltar}>
 				<Icone />
 			</TouchableOpacity>

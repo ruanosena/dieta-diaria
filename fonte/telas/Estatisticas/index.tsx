@@ -50,7 +50,7 @@ export default function Estatisticas() {
 	return (
 		<Conteiner>
 			<Heroi
-				titulo={`${porcentagem}%`}
+				titulo={`${porcentagem.toFixed(2)}%`}
 				descricao="das refeições dentro da dieta"
 				topo
 				onPress={lidarVoltar}

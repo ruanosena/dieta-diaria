@@ -1,7 +1,7 @@
 import InicioCabecalho from "@comp/InicioCabecalho";
 import {
 	Conteiner,
-	Formulario,
+	Conteudo,
 	FormularioLinha,
 	FormularioRotulo,
 	Topo,
@@ -14,7 +14,7 @@ import Selecionavel from "@comp/Selecionavel";
 import Botao from "@comp/Botao";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Alert } from "react-native";
+import { Alert, ScrollView } from "react-native";
 import { dataRegex, horaRegex } from "../../utilitarios/validar";
 import criarRefeicao from "@arm/refeicao/criarRefeicao";
 
@@ -53,61 +53,63 @@ export default function Criar() {
 				</TopoBotao>
 				<TopoTexto>Nova refeição</TopoTexto>
 			</Topo>
-			<Formulario>
-				<Entrada rotulo="Nome" value={nome} onChangeText={defNome} />
-				<Entrada
-					rotulo="Descrição"
-					value={descricao}
-					onChangeText={defDescricao}
-					multiline
-					textAlignVertical="top"
-					numberOfLines={5}
-				/>
-				<FormularioLinha>
+			<ScrollView>
+				<Conteudo>
+					<Entrada rotulo="Nome" value={nome} onChangeText={defNome} />
 					<Entrada
-						rotulo="Data"
-						value={data}
-						maxLength={10}
-						onChangeText={(texto) => {
-							if (texto.length == 2 || texto.length == 5) texto += "/";
-							defData(texto);
-						}}
-						keyboardType="number-pad"
-						style={{ width: 126 }}
+						rotulo="Descrição"
+						value={descricao}
+						onChangeText={defDescricao}
+						multiline
+						textAlignVertical="top"
+						numberOfLines={5}
 					/>
-					<Entrada
-						rotulo="Hora"
-						value={hora}
-						maxLength={5}
-						onChangeText={(texto) => {
-							if (texto.length == 2) texto += ":";
-							defHora(texto);
-						}}
-						keyboardType="number-pad"
-						style={{ width: 126 }}
-					/>
-				</FormularioLinha>
-				<FormularioLinha>
+					<FormularioLinha>
+						<Entrada
+							rotulo="Data"
+							value={data}
+							maxLength={10}
+							onChangeText={(texto) => {
+								if (texto.length == 2 || texto.length == 5) texto += "/";
+								defData(texto);
+							}}
+							keyboardType="number-pad"
+						/>
+						<Entrada
+							rotulo="Hora"
+							value={hora}
+							maxLength={5}
+							onChangeText={(texto) => {
+								if (texto.length == 2) texto += ":";
+								defHora(texto);
+							}}
+							keyboardType="number-pad"
+						/>
+					</FormularioLinha>
 					<FormularioRotulo>Está dentro da dieta?</FormularioRotulo>
-					<Selecionavel
-						tipo="primario"
-						estaAtivo={estaNaDieta}
-						onPress={() => defEstaNaDieta(true)}
-					>
-						Sim
-					</Selecionavel>
-					<Selecionavel
-						tipo="secundario"
-						estaAtivo={!estaNaDieta}
-						onPress={() => defEstaNaDieta(false)}
-					>
-						Não
-					</Selecionavel>
-				</FormularioLinha>
-				<Botao onPress={lidarEnviar} estaCarregando={estaEnviando}>
-					Cadastrar refeição
-				</Botao>
-			</Formulario>
+					<FormularioLinha>
+						<Selecionavel
+							tipo="primario"
+							estaAtivo={estaNaDieta}
+							style={{ flex: 1 }}
+							onPress={() => defEstaNaDieta(true)}
+						>
+							Sim
+						</Selecionavel>
+						<Selecionavel
+							tipo="secundario"
+							estaAtivo={!estaNaDieta}
+							style={{ flex: 1 }}
+							onPress={() => defEstaNaDieta(false)}
+						>
+							Não
+						</Selecionavel>
+					</FormularioLinha>
+					<Botao onPress={lidarEnviar} estaCarregando={estaEnviando}>
+						Cadastrar refeição
+					</Botao>
+				</Conteudo>
+			</ScrollView>
 		</Conteiner>
 	);
 }

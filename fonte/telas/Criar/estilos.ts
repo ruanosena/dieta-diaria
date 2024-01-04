@@ -37,8 +37,7 @@ export const TopoIcone = styled(ArrowLeft).attrs(({ theme }) => ({
 	color: theme.CORES.BASE.GRAY_600,
 }))``;
 
-export const Formulario = styled.ScrollView`
-	flex: 1;
+export const Conteudo = styled.View`
 	padding: 24px;
 	border-radius: 20px;
 	background-color: ${({ theme }) => theme.CORES.BASE.WHITE};
@@ -55,7 +54,8 @@ export const FormularioRotulo = styled.Text`
 `;
 
 export const FormularioLinha = styled.View`
-	flex-flow: row wrap;
+	flex-direction: row;
+	align-items: center;
 	column-gap: 20px;
 	width: 100%;
 `;

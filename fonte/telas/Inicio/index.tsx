@@ -10,7 +10,13 @@ import { SectionList, Text } from "react-native";
 import obterRefeicoesPorSecao from "@arm/refeicao/obterRefeicoes";
 
 export default function Inicio() {
-	const [refeicoes, defRefeicoes] = useState<SecaoRefeicaoDTO[]>([]);
+	const [secoes, defSecoes] = useState<SecaoRefeicaoDTO[]>([]);
+	const refeicoes = secoes.reduce<RefeicaoDTO[]>((refeicoes, secao) => {
+		refeicoes.push(...secao.data);
+		return refeicoes;
+	}, []);
+	const dentroDaDieta = refeicoes.filter((r) => r.estaNaDieta);
+	const porcentagem = (dentroDaDieta.length / refeicoes.length) * 100;
 
 	const navegador = useNavigation();
 
@@ -22,12 +28,12 @@ export default function Inicio() {
 		navegador.navigate("criar");
 	}
 
-	function lidarAbrirRefeicao() {
-		navegador.navigate("refeicao");
+	function lidarAbrirRefeicao(indice: number, data: string) {
+		navegador.navigate("refeicao", { indice, data });
 	}
 
 	async function buscarReifeicoesPorSecao() {
-		defRefeicoes(await obterRefeicoesPorSecao());
+		defSecoes(await obterRefeicoesPorSecao());
 	}
 
 	useFocusEffect(
@@ -40,9 +46,9 @@ export default function Inicio() {
 		<Conteiner>
 			<InicioCabecalho />
 			<Heroi
-				titulo="90,86%"
+				titulo={`${porcentagem.toFixed(2)}%`}
 				descricao="das refeições dentro da dieta"
-				tipo="primario"
+				tipo={porcentagem >= 50 ? "primario" : "secundario"}
 				onPress={lidarAbrirHeroi}
 			/>
 
@@ -53,9 +59,11 @@ export default function Inicio() {
 				</Botao>
 
 				<SectionList
-					sections={refeicoes}
-					keyExtractor={(item, index) => item.hora + index}
-					renderItem={({ item }) => <RefeicaoCartao onPress={lidarAbrirRefeicao} refeicao={item} />}
+					sections={secoes}
+					keyExtractor={(item, index) => item.data + item.hora + index}
+					renderItem={({ item, index }) => (
+						<RefeicaoCartao onPress={() => lidarAbrirRefeicao(index, item.data)} refeicao={item} />
+					)}
 					renderSectionHeader={({ section: { title } }) => <SecaoTitulo>{title}</SecaoTitulo>}
 				/>
 			</SecaoConteiner>

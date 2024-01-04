@@ -31,7 +31,7 @@ export default function Botao({
 }: BotaoProps) {
 	return (
 		<Conteiner tipo={tipo} {...rest} disabled={estaCarregando}>
-			{icone && BotaoIcones[icone]}
+			{!estaCarregando && icone && BotaoIcones[icone]}
 			<Titulo tipo={tipo}>{estaCarregando ? <ActivityIndicator /> : children}</Titulo>
 		</Conteiner>
 	);

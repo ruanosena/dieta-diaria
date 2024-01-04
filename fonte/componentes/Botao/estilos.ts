@@ -17,6 +17,8 @@ export const Conteiner = styled.TouchableOpacity<BotaoEstiloProps>`
 	border-radius: 6px;
 	${({ theme, tipo }) => css`
 		background-color: ${tipo == "primario" ? theme.CORES.BASE.GRAY_600 : theme.CORES.BASE.GRAY_100};
+		border-width: 1px;
+		border-color: ${tipo == "secundario" && theme.CORES.BASE.GRAY_700};
 	`}
 `;
 
@@ -35,7 +37,7 @@ export const IconeEditar = styled(PencilSimpleLine).attrs(({ theme }) => ({
 `;
 
 export const IconeDeletar = styled(Trash).attrs(({ theme }) => ({
-	color: theme.CORES.BASE.WHITE,
+	color: theme.CORES.BASE.GRAY_700,
 	size: 18,
 }))`
 	margin-right: 12px;

@@ -12,6 +12,11 @@ export const ConteudoConteiner = styled.View`
 	border-radius: 20px;
 	padding: 24px;
 	flex: 1;
+	align-items: flex-start;
+`;
+export const BotoesGrupo = styled.View`
+	padding: 24px;
+	gap: 9px;
 `;
 
 export const Titulo = styled.Text`
@@ -47,5 +52,3 @@ export const DataHora = styled.Text`
 	`}
 	margin: 8px 0;
 `;
-
-
