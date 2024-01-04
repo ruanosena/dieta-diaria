@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import {
 	IconeDireita,
 	IconeVoltar,
@@ -13,25 +12,35 @@ import { TouchableOpacityProps } from "react-native";
 
 type DestaqueProps = TouchableOpacityProps & {
 	titulo: string;
-	children: ReactNode;
+	descricao: string;
 	topo?: boolean;
 	tipo?: HeroiTipoEstiloProps;
 };
 
-export default function Heroi({ titulo, children, tipo = "primario", topo, ...rest }: DestaqueProps) {
+export default function Heroi({
+	titulo,
+	descricao,
+	tipo = "primario",
+	topo,
+	...rest
+}: DestaqueProps) {
 	const { CORES } = useTheme();
 
 	return (
 		<Conteiner tipo={tipo}>
 			<BotaoIcone topo={topo} {...rest}>
 				{topo ? (
-					<IconeVoltar color={tipo == "primario" ? CORES.PRODUTO.GREEN_DARK : CORES.PRODUTO.RED_DARK} />
+					<IconeVoltar
+						color={tipo == "primario" ? CORES.PRODUTO.GREEN_DARK : CORES.PRODUTO.RED_DARK}
+					/>
 				) : (
-					<IconeDireita color={tipo == "primario" ? CORES.PRODUTO.GREEN_DARK : CORES.PRODUTO.RED_DARK} />
+					<IconeDireita
+						color={tipo == "primario" ? CORES.PRODUTO.GREEN_DARK : CORES.PRODUTO.RED_DARK}
+					/>
 				)}
 			</BotaoIcone>
 			<Titulo>{titulo}</Titulo>
-			<Texto>{children}</Texto>
+			<Texto>{descricao}</Texto>
 		</Conteiner>
 	);
 }

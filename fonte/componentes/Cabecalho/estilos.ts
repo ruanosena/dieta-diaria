@@ -1,39 +1,26 @@
+import { ArrowLeft } from "phosphor-react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { css } from "styled-components/native";
 
-export const Conteiner = styled.View`
-	align-items: center;
-	justify-content: space-between;
-	flex-direction: row;
-	width: 100%;
-	margin-bottom: 32px;
-`;
-
-export const Logotipo = styled.View`
+export const Conteiner = styled(SafeAreaView)`
+	padding: 24px;
 	flex-direction: row;
 	align-items: center;
-	width: 78px;
-	/* height: 41px; */
+	background-color: ${({ theme }) => theme.CORES.BASE.GRAY_300};
 `;
 
-export const Marca = styled.Text`
-	margin-left: 4px;
+export const Titulo = styled.Text`
 	${({ theme }) => css`
 		font-family: ${theme.FONT_FAMILY.BOLD};
 		font-size: ${theme.FONT_SIZE.LG}px;
 		color: ${theme.CORES.BASE.GRAY_700};
 	`}
+	flex: 1;
+	text-align: center;
 `;
 
-export const Perfil = styled.TouchableOpacity`
-	width: 40px;
-	height: 40px;
-	border: 2px solid ${({ theme }) => theme.CORES.BASE.GRAY_200};
-	border-radius: 40px;
-	overflow: hidden;
-`;
-
-export const Imagem = styled.Image`
-	max-width: 100%;
-	max-height: 100%;
-`;
+export const Icone = styled(ArrowLeft).attrs(({ theme }) => ({
+	size: 24,
+	color: theme.CORES.BASE.GRAY_600,
+}))``;

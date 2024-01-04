@@ -37,7 +37,7 @@ export const TopoIcone = styled(ArrowLeft).attrs(({ theme }) => ({
 	color: theme.CORES.BASE.GRAY_600,
 }))``;
 
-export const Formulario = styled.View`
+export const Formulario = styled.ScrollView`
 	flex: 1;
 	padding: 24px;
 	border-radius: 20px;

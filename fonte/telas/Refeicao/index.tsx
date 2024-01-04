@@ -1,4 +1,4 @@
-import TelaCabecalho from "@comp/TelaCabecalho";
+import Cabecalho from "@comp/Cabecalho";
 import { Conteiner, ConteudoConteiner, DataHora, Descricao, Subtitulo, Titulo } from "./estilos";
 import Selecionavel from "@comp/Selecionavel";
 import Botao from "@comp/Botao";
@@ -6,7 +6,7 @@ import Botao from "@comp/Botao";
 export default function Refeicao() {
 	return (
 		<Conteiner>
-			<TelaCabecalho>Refeição</TelaCabecalho>
+			<Cabecalho>Refeição</Cabecalho>
 			<ConteudoConteiner>
 				<Titulo>Sanduíche</Titulo>
 				<Descricao>Sanduíche de pão integral com atum e salada de alface e tomate</Descricao>
