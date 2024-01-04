@@ -1,5 +1,5 @@
 export type SecaoRefeicaoDTO = {
-  date: string;
+  title: string;
   data: RefeicaoDTO[];
 }
 export type RefeicaoDTO = {

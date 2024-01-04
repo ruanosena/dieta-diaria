@@ -1,67 +1,16 @@
 import { Conteiner, SecaoConteiner, SecaoNome, SecaoTitulo } from "./estilos";
-import Cabecalho from "@comp/Cabecalho";
+import InicioCabecalho from "@comp/InicioCabecalho";
 import Heroi from "@comp/Heroi";
 import Botao from "@comp/Botao";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import RefeicaoCartao from "@comp/RefeicaoCartao";
-import { useState } from "react";
-import { RefeicaoDTO, SecaoRefeicaoDTO } from "@arm/refeicao/RefeicaoDTO";
+import { useCallback, useState } from "react";
+import { RefeicaoDTO, SecaoRefeicaoDTO } from "@arm/refeicao/refeicaoDTO";
 import { SectionList, Text } from "react-native";
+import obterRefeicoesPorSecao from "@arm/refeicao/obterRefeicoes";
 
 export default function Inicio() {
-	const [refeicoes, defRefeicoes] = useState<SecaoRefeicaoDTO[]>([
-		{
-			date: "12.08.2023",
-			data: [
-				{ nome: "X-tudo", descricao: "", data: "12.08.2023", hora: "20:00", estaNaDieta: false },
-				{
-					nome: "Whey protein com leite",
-					descricao: "",
-					data: "12.08.2023",
-					hora: "16:00",
-					estaNaDieta: true,
-				},
-			],
-		},
-		{
-			date: "11.08.2023",
-			data: [
-				{
-					nome: "Salada cesar com frango",
-					descricao: "",
-					data: "11.08.2023",
-					hora: "12:30",
-					estaNaDieta: true,
-				},
-				{
-					nome: "Vitamina de banana",
-					descricao: "",
-					data: "11.08.2023",
-					hora: "09:30",
-					estaNaDieta: true,
-				},
-			],
-		},
-		{
-			date: "11.08.2023",
-			data: [
-				{
-					nome: "Salada cesar com frango",
-					descricao: "",
-					data: "11.08.2023",
-					hora: "12:30",
-					estaNaDieta: true,
-				},
-				{
-					nome: "Vitamina de banana",
-					descricao: "",
-					data: "11.08.2023",
-					hora: "09:30",
-					estaNaDieta: true,
-				},
-			],
-		},
-	]);
+	const [refeicoes, defRefeicoes] = useState<SecaoRefeicaoDTO[]>([]);
 
 	const navegador = useNavigation();
 
@@ -77,12 +26,25 @@ export default function Inicio() {
 		navegador.navigate("refeicao");
 	}
 
+	async function buscarReifeicoesPorSecao() {
+		defRefeicoes(await obterRefeicoesPorSecao());
+	}
+
+	useFocusEffect(
+		useCallback(() => {
+			buscarReifeicoesPorSecao();
+		}, [])
+	);
+
 	return (
 		<Conteiner>
-			<Cabecalho />
-			<Heroi titulo="90,86%" tipo="primario" onPress={lidarAbrirHeroi}>
-				das refeições dentro da dieta
-			</Heroi>
+			<InicioCabecalho />
+			<Heroi
+				titulo="90,86%"
+				descricao="das refeições dentro da dieta"
+				tipo="primario"
+				onPress={lidarAbrirHeroi}
+			/>
 
 			<SecaoConteiner>
 				<SecaoNome>Refeições</SecaoNome>
@@ -94,7 +56,7 @@ export default function Inicio() {
 					sections={refeicoes}
 					keyExtractor={(item, index) => item.hora + index}
 					renderItem={({ item }) => <RefeicaoCartao onPress={lidarAbrirRefeicao} refeicao={item} />}
-					renderSectionHeader={({ section: { date } }) => <SecaoTitulo>{date}</SecaoTitulo>}
+					renderSectionHeader={({ section: { title } }) => <SecaoTitulo>{title}</SecaoTitulo>}
 				/>
 			</SecaoConteiner>
 		</Conteiner>
